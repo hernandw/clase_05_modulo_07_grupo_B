@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp | Plataforma de Cursos</title>
     <link rel="stylesheet" href="css/styles.css">
-    <title>{{pageTitle}}</title>
 </head>
 <body>
-    {{{body}}}
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">🎓 CursosPro</a>
+            
+            <ul class="navbar-menu">
+                <li><a href="/" class="nav-link">Catálogo</a></li>
+                <li><a href="/create" class="nav-link">Crear Curso</a></li>
+                <li><a href="/category" class="nav-link">Nueva Categoría</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {{{body}}}
+    </main>
+
+    <footer class="footer">
+        <p>Desarrollado con ❤️ en el Bootcamp</p>
+    </footer>
+
 </body>
 </html>

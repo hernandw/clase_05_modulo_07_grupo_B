@@ -1,1 +1,53 @@
-<h2>Home Page</h2>
+<div class="container">
+    <h1>{{titulo}}</h1>
+
+    <div class="action-bar">
+        <a href="/create" class="btn btn-purple">
+            ➕ Crear Nuevo Curso
+        </a>
+
+        {{#if filtrando}}
+            <a href="/" class="btn btn-secondary">
+                ❌ Ver todos los cursos
+            </a>
+            
+            <a href="/categorias/editar/{{category.id}}" class="btn btn-warning">
+                ✏️ Editar Categoría "{{category.name}}"
+            </a>
+        {{/if}}
+    </div>
+
+    <div class="course-grid">
+        {{#each courses}}
+            <div class="course-card">
+                
+                <a href="/categoria/{{this.categoryId}}" class="text-decoration-none">
+                    <span class="badge badge-primary">
+                        🔍 {{this.Category.name}}
+                    </span>
+                </a>
+                
+                <h2 class="course-title">{{this.title}}</h2>
+                <p class="course-desc">{{this.description}}</p>
+                <h3 class="course-price">${{this.price}}</h3>
+                
+                <hr class="card-divider">
+                
+                <div class="card-actions">
+                    <a href="/editar/{{this.id}}" class="flex-1">
+                        <button class="btn btn-warning w-100">Editar</button>
+                    </a>
+                    
+                    <form action="/eliminar/{{this.id}}" method="POST" class="m-0 flex-1">
+                        <button type="submit" class="btn btn-danger w-100">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        {{else}}
+            <div class="empty-state">
+                <h3>No hay cursos disponibles.</h3>
+                <p>¡Anímate a ser el primero en crear uno!</p>
+            </div>
+        {{/each}}
+    </div>
+</div>
