@@ -6,7 +6,7 @@ const {DB_USER, DB_DATABASE, DB_PASSWORD, DB_HOST, DIALECT} = process.env
 const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
     host: DB_HOST,
     dialect: DIALECT,
-    //logging: false
+    logging: false
 })
 
 export default sequelize

@@ -1,0 +1,45 @@
+<div class="container slim-container">
+    <h1>Crear Nuevo Curso</h1>
+
+    <form action="/create-course" method="POST" class="custom-form">
+        
+        <div class="form-group">
+            <label>Título del Curso:</label>
+            <input type="text" name="title" required placeholder="Ej. Master en Node.js">
+        </div>
+
+        <div class="form-group">
+            <label>Descripción:</label>
+            <textarea name="description" rows="4" placeholder="¿De qué trata este curso?"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Precio (USD):</label>
+            <input type="number" step="0.01" name="price" required placeholder="Ej. 49.99">
+        </div>
+
+        <div class="form-group">
+            <label>Categoría:</label>
+            <div class="input-row">
+                <select name="categoryId" required class="flex-grow">
+                    <option value="" disabled selected>-- Selecciona una categoría --</option>
+                    {{#each categories}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                
+                <a href="/category" class="btn btn-primary btn-sm nowrap">
+                    ➕ Nueva Categoría
+                </a>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-10">
+            Guardar Curso
+        </button>
+    </form>
+
+    <div class="form-footer">
+        <a href="/" class="link-back">⬅ Volver al catálogo</a>
+    </div>
+</div>
