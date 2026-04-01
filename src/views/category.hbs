@@ -1,0 +1,32 @@
+<div class="course-grid">
+        {{#each categories}}
+            <div class="course-card">
+                
+                <a href="/categoria/{{this.categoryId}}" class="text-decoration-none">
+                    <span class="badge badge-primary">
+                        🔍 {{this.Category.name}}
+                    </span>
+                </a>
+                
+                <h2 class="course-title">{{this.name}}</h2>
+                
+                
+                <hr class="card-divider">
+                
+                <div class="card-actions">
+                    <a href="/editar/category/{{this.id}}" class="flex-1">
+                        <button class="btn btn-warning w-100">Editar</button>
+                    </a>
+                    
+                    <form action="/eliminar/category/{{this.id}}" method="POST" class="m-0 flex-1">
+                        <button type="submit" class="btn btn-danger w-100">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        {{else}}
+            <div class="empty-state">
+                <h3>No hay categorias disponibles</h3>
+                <p>¡Anímate a ser el primero en crear una!</p>
+            </div>
+        {{/each}}
+    </div>

@@ -66,11 +66,65 @@ export const createCourse = async (req, res) => {
 export const deleteCourse = async (req, res) => {
   try {
     const { id } = req.params;
-    await Course.destroy({where: {id}})
-    res.redirect('/')
-    
+    await Course.destroy({ where: { id } });
+    res.redirect("/");
   } catch (error) {
     console.error("Error al eliminar", error);
     res.status(500).send("Error al eliminar el curso");
   }
 };
+
+//6. Formulario para editar un curso
+
+export const getEditCourseForm = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const course = await Course.findByPk(id, { raw: true });
+    const categories = await Category.findAll({ raw: true });
+    if (!course)
+      return res.status(500).render("error", {
+        message: "Curso no Existe",
+      });
+
+    res.render("formEdit", {
+      course,
+      categories,
+    });
+  } catch (error) {
+    console.error("Error al cargar la edición", error);
+    res.status(500).send("Error Interno al Cargar Formulario");
+  }
+};
+
+//7. Actualizar los datos de los cursos a editar
+
+export const updateCourse = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, price, categoryId } = req.body;
+    await Course.update(
+      { title, description, price, categoryId },
+      { where: { id } },
+    );
+    res.redirect('/')
+  } catch (error) {
+    console.error("error al actualizar curso", error)
+    res.status(500).render('Error',{
+      message: 'Error para guardar los datos'
+    })
+  }
+};
+
+export const getCategory = async(req, res)=>{
+  try {
+     const categories = await Category.findAll({ raw: true });
+    res.render('category',{
+      categories
+    })
+  } catch (error) {
+    console.error("error al mostrar categorias", error)
+    res.render('error',{
+      message: "Error al mostrar categorias"
+    })
+  }
+}

@@ -1,0 +1,40 @@
+<div class="container slim-container">
+    <h1>Editar Curso</h1>
+
+    <form action="/actualizar/{{course.id}}" method="POST" class="custom-form">
+        
+        <div class="form-group">
+            <label>Título del Curso:</label>
+            <input type="text" name="title" value="{{course.title}}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Descripción:</label>
+            <textarea name="description" rows="4">{{course.description}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Precio (USD):</label>
+            <input type="number" step="0.01" name="price" value="{{course.price}}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Categoría Actual (Re-seleccionar):</label>
+            <select name="categoryId" required>
+                <option value="">-- Cambiar categoría --</option>
+                {{#each categories}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+            <small style="color: #7f8c8d; font-size: 0.85rem;">
+                <i>* Por simplicidad, vuelve a seleccionar la categoría.</i>
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-warning mt-10">Actualizar Curso</button>
+    </form>
+
+    <div class="form-footer">
+        <a href="/" class="link-back">⬅ Cancelar y volver al catálogo</a>
+    </div>
+</div>
